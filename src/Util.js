@@ -13,7 +13,6 @@ const serverURL = localURL;
 exports.search = (userName) => {
   const url = `${serverURL}/search/${userName}`;
   return axios.get(url).then( response => {
-    console.log('response', response.data);
     return response.data;
   });
 }

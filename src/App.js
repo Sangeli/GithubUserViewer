@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import SearchBar from './SearchBar';
+import Profile from './Profile';
 import Util from './Util'
 import './App.css';
 
@@ -8,20 +9,30 @@ class App extends Component {
     super(props);
 
     this.state = {
+      avatarUrl: '',
+      repoNames: []
     }
   }
 
   search(userName) {
     Util.search(userName).then( results => {
-
+      this.setState({
+        avatarUrl: results.avatarUrl,
+        repoNames: results.repoNames
+      })
     });
   }
 
   render() {
     return (
-      <SearchBar
-        search={this.search.bind(this)}
-      />
+      <div>
+        <SearchBar
+          search={this.search.bind(this)}
+        />
+        <Profile
+          avatarUrl={this.state.avatarUrl}
+        />
+      </div>
     );
   }
 }

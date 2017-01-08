@@ -16,3 +16,11 @@ exports.search = (userName) => {
     return response.data;
   });
 }
+
+exports.getCommitDates = (userName, repoName) => {
+  const url = `${serverURL}/repos/${userName}/${repoName}/commits/dates`;
+  console.log('url', url);
+  return axios.get(url).then( response => {
+    return response.data;
+  });
+}

@@ -22,3 +22,25 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.avatar {
+  height: auto; 
+  width: auto; 
+  max-width: 200px; 
+  max-height: 200px;
+}
+
+.search {
+  width: 50%;
+}
+
+.user-search {
+  float: left;
+}
+
+
+.repo-search {
+  position: relative;
+  float: right;
+  width: 30%;
+}

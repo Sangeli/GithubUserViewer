@@ -21,5 +21,6 @@ app.use( (req, res, next) => {
 
 
 app.get('/search/:userName', util.searchUser);
+app.get('/repos/:userName/:repoName/commits/dates', util.getCommitDates);
 
 

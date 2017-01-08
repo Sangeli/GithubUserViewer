@@ -11,8 +11,16 @@ class SearchBar extends Component {
 
   onKeyDown(e) {
     const key = e.keyCode;
-    if(key == keyCodes.ENTER) {
-      this.props.search(e.target.value)
+    if(key === keyCodes.ENTER) {
+      if(this.props.search) {
+        this.props.search(e.target.value)
+      }
+    }
+  }
+
+  onChange(e) {
+    if(this.props.filter) {
+      this.props.filter(e.target.value);
     }
   }
 
@@ -21,9 +29,9 @@ class SearchBar extends Component {
       <div>
         <input 
           type="text" 
-          id="user-search-bar"
-          placeholder={'Search for Users'}
+          placeholder={this.props.defaultText}
           onKeyDown={this.onKeyDown.bind(this)}
+          onChange={this.onChange.bind(this)}
            />
       </div>
     );

@@ -1,6 +1,7 @@
 {
   "name": "GithubUserViewer",
   "version": "0.1.0",
+  "hompeage": "https://githubuserviewer.herokuapp.com",
   "dependencies": {
     "axios": "^0.15.3",
     "express": "^4.14.0",

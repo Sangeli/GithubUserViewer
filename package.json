@@ -8,8 +8,9 @@
     "nodemon": "^1.11.0",
     "react": "^15.4.2",
     "react-calendar-heatmap": "^1.1.0",
-    "react-scripts": "0.8.4",
-    "react-dom": "^15.4.2"
+    "react-cookie": "^1.0.4",
+    "react-dom": "^15.4.2",
+    "react-scripts": "0.8.4"
   },
   "scripts": {
     "start": "react-scripts start && nodemon server/server.js",

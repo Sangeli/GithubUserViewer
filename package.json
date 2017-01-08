@@ -13,7 +13,7 @@
     "react-scripts": "0.8.4"
   },
   "scripts": {
-    "start": "nodemon server/server.js & react-scripts start",
+    "start": "node server/server.js",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"

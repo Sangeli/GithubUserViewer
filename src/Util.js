@@ -20,7 +20,6 @@ exports.search = (userName) => {
 exports.getCommitDates = (userName, repoName) => {
   const url = `${serverURL}/repos/${userName}/${repoName}/commits/dates`;
   return axios.get(url).then( response => {
-    console.log('response', response.data.commitDates);
     return response.data;
   });
 }

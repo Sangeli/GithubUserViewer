@@ -26,20 +26,24 @@ exports.getCommitDates = (req, res, next) => {
   const repoName = req.params.repoName;
   const url = `https://api.github.com/repos/${userName}/${repoName}/commits`;
 
-  return axios.get(url).then( response => {
-    var commitDates = [];
+  return axios.get(url, {
+    params: {author: userName}
+  }).then( response => {
+    let lastCommit;
+    var countByDay = {};
     for(var i =0; i < response.data.length; i++) {
       const fullCommitInfo = response.data[i];
       if(fullCommitInfo.author != null) {
-        if (fullCommitInfo.author.login === userName) {
-          commitDate = fullCommitInfo.commit.author.date;
-          console.log('fullCommitInfo', commitDate);
-          commitDates.push(commitDate);
-        }
+        commitDate = new Date(fullCommitInfo.commit.author.date);
+        //converts to a date without time
+        dateString = commitDate.toDateString();
+        //the last commit will be found first
+        lastCommit = lastCommit || dateString;
+        countByDay[dateString] = countByDay[dateString] || 0;
+        countByDay[dateString] ++;
       }
     }
-    console.log('commitDates', commitDates)
-    res.send({commitDates});
+    res.send({lastCommit, countByDay});
   });
 }
 

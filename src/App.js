@@ -14,7 +14,8 @@ class App extends Component {
       userName: '',
       displayedRepos: [],
       selectedRepo: null,
-      commitDates: []
+      countByDay: {},
+      lastCommit: null
     }
   }
 
@@ -54,40 +55,56 @@ class App extends Component {
     const repoName = e.target.id;
     const userName = this.state.userName;
     Util.getCommitDates(userName, repoName).then( results => {
-      console.log('results', results.commitDates);
+      console.log('results', results);
+      const lastCommit = new Date(results.lastCommit);
       this.setState({
         selectedRepo: repoName,
-        commitDates: results.commitDates
-      })
+        countByDay: results.countByDay,
+        lastCommit: lastCommit
+      });
     });
   }
 
 
   renderRepo(repoName) {
     return (
-      <div id={repoName} onClick={this.chooseRepo.bind(this)} >{repoName}</div>
+      <div id={repoName} onClick={this.chooseRepo.bind(this)} key={repoName} >{repoName}</div>
     )
   }
 
   renderCalendar() {
+    //reformat for calendar
+    var calendarDates = [];
+    for (var commitDate in this.state.countByDay) {
+      const obj = {date: commitDate, count: this.state.countByDay[commitDate]};
+      calendarDates.push(obj);
+    }
+    console.log('calendarDates', calendarDates);
     return (
-      <CalendarHeatmap
-        endDate={new Date(this.state.commitDates[0])}
-        numDays={100}
-        values={
-          this.state.commitDates.map(new Date)
-        }
-      />
+      <div className='calendar-wrapper'>
+        <CalendarHeatmap
+          endDate={this.state.lastCommit}
+          numDays={100}
+          values={calendarDates}
+          classForValue={(value) => {
+            if (!value) {
+              return 'color-empty';
+            } else if (value.count >= 4) {
+              return 'color-scale-4';
+            }
+            return `color-scale-${value.count}`;
+          }}
+        />
+      </div>
     )
   }
 
   render() {
     return (
       <div>
-        <div>
-          <h1>GithubUserViewer</h1>
-        </div>
         <div className='search'>
+          <h1>GithubUserViewer</h1>
+          <br/>
           <div className='user-search'>
             <SearchBar
               search={this.search.bind(this)}
@@ -110,7 +127,11 @@ class App extends Component {
           </div>
         </div>
         <div className='commit-calendar'>
-          { this.state.commitDates.length ? this.renderCalendar() : ''}
+          <br/>
+          <br/>
+          <br/>
+          <h3>{this.state.selectedRepo ? this.state.selectedRepo + ' commits by ' + this.state.userName : 'Click repo'}</h3>
+          { this.state.lastCommit ? this.renderCalendar() : ''}
         </div>
       </div>
     );

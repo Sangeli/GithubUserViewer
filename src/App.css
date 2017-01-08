@@ -14,8 +14,18 @@
   color: white;
 }
 
+.title {
+  position: relative;
+  float: left;
+  width: 50%;
+}
+
 .App-intro {
   font-size: large;
+}
+
+h1 {
+  text-align: center;
 }
 
 @keyframes App-logo-spin {
@@ -39,6 +49,10 @@
   float: left;
 }
 
+.calendar-wrapper {
+  float: center;
+  width: 70%;
+}
 
 .repo-search {
   position: relative;
@@ -121,3 +135,9 @@
 .react-calendar-heatmap .color-gitlab-4 {
   fill: #254e77;
 }
+
+
+.react-calendar-heatmap .color-scale-1 { fill: #d6e685; }
+.react-calendar-heatmap .color-scale-2 { fill: #8cc665; }
+.react-calendar-heatmap .color-scale-3 { fill: #44a340; }
+.react-calendar-heatmap .color-scale-4 { fill: #1e6823; }

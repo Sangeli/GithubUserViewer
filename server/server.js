@@ -1,4 +1,5 @@
-
+'use strict'
+const path = require('path');
 const util = require('./util');
 const express = require('express');
 const https = require('https');
@@ -8,12 +9,12 @@ const port = process.env.PORT || 9000;;
 const app = express();
 
 
-app.use('/', express.static(__dirname + '/public'));
-
 
 app.listen(port, () => console.log('server up and running at %s port', port));
 //const server = https.screateServer(app);
 //server.listen(port, () => console.log('server up and running at %s port', port));
+
+app.use(express.static(path.join(__dirname, '/public')));
 
 
 // Add headers

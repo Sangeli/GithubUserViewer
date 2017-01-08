@@ -1,12 +1,18 @@
 
 const util = require('./util');
 const express = require('express');
+const http = require('http');
+
 const port = process.env.PORT || 9000;;
 
 const app = express();
 
+const server = http.createServer(app);
 
-app.listen(port, () => console.log('server up and running at %s port', port));
+
+
+//app.listen(port, () => console.log('server up and running at %s port', port));
+server.listen(port, () => console.log('server up and running at %s port', port));
 
 
 // Add headers

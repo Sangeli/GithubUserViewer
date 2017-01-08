@@ -7,7 +7,6 @@ exports.searchUser = (req, res, next) => {
   const userName = req.params.userName;
   const url = `https://api.github.com/users/${userName}/repos`;
   return axios.get(url).then( response => {
-    console.log('got response with', userName);
     const repos = response.data;
     var avatarUrl;
     var repoNames = [];
@@ -31,9 +30,12 @@ exports.getCommitDates = (req, res, next) => {
     var commitDates = [];
     for(var i =0; i < response.data.length; i++) {
       const fullCommitInfo = response.data[i];
-      if ( (fullCommitInfo.author != null) & (fullCommitInfo.author.login === userName)) {
-        commitDate = fullCommitInfo.commit.date;
-        commitDates.push(commitDate);
+      if(fullCommitInfo.author != null) {
+        if (fullCommitInfo.author.login === userName) {
+          commitDate = fullCommitInfo.commit.author.date;
+          console.log('fullCommitInfo', commitDate);
+          commitDates.push(commitDate);
+        }
       }
     }
     console.log('commitDates', commitDates)

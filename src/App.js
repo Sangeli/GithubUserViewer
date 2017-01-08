@@ -72,10 +72,10 @@ class App extends Component {
   renderCalendar() {
     return (
       <CalendarHeatmap
-        endDate={new Date(self.state.commitDates[-1])}
+        endDate={new Date(this.state.commitDates[0])}
         numDays={100}
         values={
-          self.state.commitDates.map(new Date)
+          this.state.commitDates.map(new Date)
         }
       />
     )

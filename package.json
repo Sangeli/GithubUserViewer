@@ -1,7 +1,6 @@
 {
   "name": "GithubUserViewer",
   "version": "0.1.0",
-  "private": true,
   "dependencies": {
     "axios": "^0.15.3",
     "express": "^4.14.0",
@@ -13,7 +12,7 @@
     "react-scripts": "0.8.4"
   },
   "scripts": {
-    "start": "node server/server.js && react-scripts start",
+    "start": "react-scripts start && nodemon server/server.js",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"

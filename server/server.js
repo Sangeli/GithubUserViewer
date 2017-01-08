@@ -7,12 +7,12 @@ const port = process.env.PORT || 9000;;
 
 const app = express();
 
-const server = https.screateServer(app);
 
 
 
-//app.listen(port, () => console.log('server up and running at %s port', port));
-server.listen(port, () => console.log('server up and running at %s port', port));
+app.listen(port, () => console.log('server up and running at %s port', port));
+//const server = https.screateServer(app);
+//server.listen(port, () => console.log('server up and running at %s port', port));
 
 
 // Add headers

@@ -3,10 +3,10 @@ import axios from 'axios';
 
 const ip = 'localhost';
 const port = '9000';
-const localURL = `https://${ip}:${port}`;
+const localURL = `http://${ip}:${port}`;
 const herokuURL = 'https://githubuserviewer.herokuapp.com';
-//const serverURL = (reactCookie.load('UseDev') === '1') ? localURL : herokuURL;
-const serverURL = localURL;
+const serverURL = (reactCookie.load('UseDev') === '1') ? localURL : herokuURL;
+//const serverURL = localURL;
 
 
 exports.search = (userName) => {

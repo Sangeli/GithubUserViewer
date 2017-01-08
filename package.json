@@ -2,15 +2,13 @@
   "name": "GithubUserViewer",
   "version": "0.1.0",
   "private": true,
-  "devDependencies": {
-    "react-scripts": "0.8.4"
-  },
   "dependencies": {
     "axios": "^0.15.3",
     "express": "^4.14.0",
     "nodemon": "^1.11.0",
     "react": "^15.4.2",
     "react-calendar-heatmap": "^1.1.0",
+    "react-scripts": "0.8.4",
     "react-dom": "^15.4.2"
   },
   "scripts": {

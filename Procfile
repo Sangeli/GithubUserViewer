@@ -1,1 +1,2 @@
-web: node server/server.js
+web: bin/boot
+web: nodemon server/server.js

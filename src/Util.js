@@ -6,7 +6,7 @@ const port = '9000';
 const localURL = `http://${ip}:${port}`;
 const herokuURL = 'https://githubuserviewer.herokuapp.com';
 //const serverURL = (reactCookie.load('UseDev') === '1') ? localURL : herokuURL;
-const serverURL = localhost;
+const serverURL = localURL;
 
 
 exports.search = (userName) => {

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import SearchBar from './SearchBar';
+import CalendarHeatmap from 'react-calendar-heatmap';
 import Util from './Util'
 import './App.css';
 
@@ -7,10 +8,13 @@ class App extends Component {
   constructor(props) {
     super(props);
 
+    this.repoNames = []
     this.state = {
       avatarUrl: '',
       userName: '',
-      displayedRepos: []
+      displayedRepos: [],
+      selectedRepo: null,
+      commitDates: []
     }
   }
 
@@ -50,7 +54,11 @@ class App extends Component {
     const repoName = e.target.id;
     const userName = this.state.userName;
     Util.getCommitDates(userName, repoName).then( results => {
-      debugger;
+      console.log('results', results.commitDates);
+      this.setState({
+        selectedRepo: repoName,
+        commitDates: results.commitDates
+      })
     });
   }
 
@@ -58,6 +66,18 @@ class App extends Component {
   renderRepo(repoName) {
     return (
       <div id={repoName} onClick={this.chooseRepo.bind(this)} >{repoName}</div>
+    )
+  }
+
+  renderCalendar() {
+    return (
+      <CalendarHeatmap
+        endDate={new Date(self.state.commitDates[-1])}
+        numDays={100}
+        values={
+          self.state.commitDates.map(new Date)
+        }
+      />
     )
   }
 
@@ -88,6 +108,9 @@ class App extends Component {
                 {this.state.displayedRepos.map(this.renderRepo.bind(this))}
             </div>
           </div>
+        </div>
+        <div className='commit-calendar'>
+          { this.state.commitDates.length ? this.renderCalendar() : ''}
         </div>
       </div>
     );

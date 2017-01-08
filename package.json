@@ -13,7 +13,7 @@
   },
   "main": "server/server.js",
   "scripts": {
-    "start": "nodemon server/server.js",
+    "start": "react-scripts start && nodemon server/server.js",
     "build": "react-scripts build",
     "prebuild": "npm run build:clean",
     "heroku-postbuild": "npm run build",

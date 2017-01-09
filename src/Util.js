@@ -6,7 +6,6 @@ const port = '9000';
 const localURL = `http://${ip}:${port}`;
 const digitalOceanURL = `http://138.197.210.121:${port}`;
 const serverURL = (reactCookie.load('UseDev') === '1') ? localURL : digitalOceanURL;
-const serverURL = localURL;
 
 
 exports.search = (userName) => {

@@ -1,7 +1,6 @@
-
+const path = require('path');
 const util = require('./util');
 const express = require('express');
-const https = require('https');
 
 const port = process.env.PORT || 9000;;
 
@@ -11,8 +10,12 @@ const app = express();
 
 
 app.listen(port, () => console.log('server up and running at %s port', port));
-//const server = https.screateServer(app);
-//server.listen(port, () => console.log('server up and running at %s port', port));
+
+app.use(express.static('./public'));
+app.get('/', function (req, res) {
+  res.sendFile(path.join(__dirname, './public', 'index.html'));
+});
+
 
 
 // Add headers

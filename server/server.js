@@ -1,3 +1,5 @@
+
+'use strict'
 const path = require('path');
 const util = require('./util');
 const express = require('express');
@@ -8,7 +10,6 @@ const app = express();
 
 
 
-
 app.listen(port, () => console.log('server up and running at %s port', port));
 
 app.use(express.static('./public'));
@@ -16,6 +17,8 @@ app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, './public', 'index.html'));
 });
 
+
+app.use(express.static(path.join(__dirname, '/public')));
 
 
 // Add headers

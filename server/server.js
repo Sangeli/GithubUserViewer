@@ -18,7 +18,7 @@ app.listen(port, () => console.log('server up and running at %s port', port));
 // });
 
 
-app.use(express.static(path.join(__dirname, '/public')));
+//app.use(express.static(path.join(__dirname, '/public')));
 
 
 // Add headers
